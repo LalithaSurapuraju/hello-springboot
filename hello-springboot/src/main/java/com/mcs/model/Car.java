@@ -11,17 +11,26 @@ public class Car implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -3528537578841284430L;
+	
 
-	public Car(String model, String year, String color) {
+
+	public Car() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Car(String model, double year, String color) {
 		super();
 		this.model = model;
 		this.year = year;
 		this.color = color;
 	}
+	
+	
 
 	String model;
 	
-	String year;
+	double year;
 	
 	String color;
 	
@@ -35,11 +44,11 @@ public class Car implements Serializable{
 		this.model = model;
 	}
 
-	public String getYear() {
+	public double getYear() {
 		return year;
 	}
 
-	public void setYear(String year) {
+	public void setYear(double year) {
 		this.year = year;
 	}
 
