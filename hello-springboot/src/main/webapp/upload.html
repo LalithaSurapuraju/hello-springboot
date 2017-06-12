@@ -4,27 +4,34 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/custom.css">
-<script type="text/javascript" src="js/main.js"></script>
 </head>
-<body>
 <body bgcolor="black">
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/main2.js"></script>
 <h1 id="myhead">WELCOME</h1>
 
 <br>
 <br>
+<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
 
   <img src="images/images.jpg"alt="Image not Available" height="82" width="82" align="right">
 
 <br>
-<input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+<input id="fileInput" name="myexcel" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
 <br><br><br>
 
-<button type="button" onclick="uploadButtonClicked()">UPLOAD</button>
-$('#myFile').bind('change', function() {
-  alert(this.files[0].size);
+<button type="button" id="btnSubmit">UPLOAD</button>
+</form>
 
-};
+<div id="testdiv" style="width:400px; height: 400px; background-color: #FFCC00">
+</div>
 
+<!-- <script type="text/javascript">
+	$("#btnSubmit").click(function(){
+		alert("Div clicked");
+	});
+
+</script> -->
 
 </body>
 </html> 
