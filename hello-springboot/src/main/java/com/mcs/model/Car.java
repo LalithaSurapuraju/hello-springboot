@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CAR_DETAILS")
 public class Car implements Serializable{
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	
     
 
 	
@@ -26,39 +26,57 @@ public class Car implements Serializable{
 
 	public Car() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	public Car(String model, String year, String color) {
+	
+	
+	public Car(String brand, String model, String year, String color) {
 		super();
+		this.brand = brand;
 		this.model = model;
 		this.year = year;
 		this.color = color;
 	}
-	
+
+
 	
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long serial;
+    
+	String brand;
+    
     String model;
     
     String year;
     
     String color;
-    
-    String Sno;
-    
-    String Brandname;
-    
-	
-	
-	
+
+
+
+	public Long getSerial() {
+		return serial;
+	}
+
+	public void setSerial(Long serial) {
+		this.serial = serial;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
 	public String getModel() {
 		return model;
 	}
-	
+
 	public void setModel(String model) {
 		this.model = model;
 	}
-	
+
 	public String getYear() {
 		return year;
 	}
@@ -77,9 +95,9 @@ public class Car implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Car [model=" + model + ", year=" + year + ", color=" + color + ", Sno=" + Sno + ", Brandname="
-				+ Brandname + "]";
+		return "Car [serial=" + serial + ", brand=" + brand + ", model=" + model + ", year=" + year + ", color=" + color
+				+ "]";
 	}
-
-	
+    
+  
 }

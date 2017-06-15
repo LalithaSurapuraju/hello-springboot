@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mcs.jpa.CarRepository;
 import com.mcs.model.Car;
+import com.mcs.service.IExcelReader;
 
 
 
@@ -30,7 +31,7 @@ public class HelloController {
 	
     @RequestMapping("/hello")
     public ResponseEntity<Car> hello(){
-    Car car= new Car("xys","2017","black");
+    Car car= new Car("abc", "xys","2017","black");
     ResponseEntity<Car> response =new ResponseEntity<Car>(car,HttpStatus.OK);
     return response;
     }
@@ -71,6 +72,13 @@ public ResponseEntity<String> multiUploadFileModel(@RequestParam("myexcel")Multi
 	return responseEntity;
 
 }
+
+	@RequestMapping("/test")
+	public ResponseEntity<String> checkCars(){
+		System.err.println(carRepo.findAll());
+		return new ResponseEntity<String>("OK", HttpStatus.OK);
+	}
+
 }
 
 

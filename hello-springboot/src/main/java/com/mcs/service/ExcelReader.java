@@ -1,4 +1,4 @@
-package com.mcs.web;
+package com.mcs.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -40,11 +40,14 @@ public class ExcelReader implements IExcelReader
         int counter = 0; 
         while (cellIterator.hasNext()) {
             Cell cell = cellIterator.next();
-            if(counter==0) car.setModel(cell.getStringCellValue());
             
-            if(counter==1) car.setYear(cell.getStringCellValue());
+            if(counter==0) car.setBrand(cell.getStringCellValue());
             
-            if(counter==2) car.setColor(cell.getStringCellValue());
+            if(counter==1) car.setModel(cell.getStringCellValue());
+            
+            if(counter==2) car.setYear(cell.getStringCellValue());
+            
+            if(counter==3) car.setColor(cell.getStringCellValue());
             
             counter++;
           

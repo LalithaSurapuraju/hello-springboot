@@ -3,7 +3,8 @@
  */
 package com.mcs.jpa;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.mcs.model.Car;
 
@@ -11,6 +12,7 @@ import com.mcs.model.Car;
  * @author Intern
  *
  */
-public interface CarRepository extends CrudRepository<Car, String> {
+@Repository
+public interface CarRepository extends JpaRepository<Car, String> {
 
 }

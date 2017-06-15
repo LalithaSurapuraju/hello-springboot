@@ -1,4 +1,4 @@
-package com.mcs.web;
+package com.mcs.service;
 
 import java.util.List;
 
