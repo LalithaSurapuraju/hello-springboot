@@ -1,62 +1,62 @@
 package com.mcs.web;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
- 
+import java.util.List;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Service;
 
 import com.mcs.model.Car;
-public class ExcelReader
+
+
+
+@Service
+public class ExcelReader implements IExcelReader
 {
 	
-	public void readExcel(byte[] file) throws Exception{
+	public List<Car> readFile(byte[] file) throws Exception{
 	
 	InputStream is = new ByteArrayInputStream(file);
     Workbook workbook = new XSSFWorkbook(is);
     Sheet firstSheet = workbook.getSheetAt(0);
     Iterator<Row> iterator = firstSheet.iterator();
-    Car c = new Car();
+    List<Car> cars = new ArrayList<Car>();
+   
      
     while (iterator.hasNext()) {
+    	
+    	Car car = new Car();
+    	
         Row nextRow = iterator.next();
         Iterator<Cell> cellIterator = nextRow.cellIterator();
-         
+        int counter = 0; 
         while (cellIterator.hasNext()) {
             Cell cell = cellIterator.next();
+            if(counter==0) car.setModel(cell.getStringCellValue());
             
-             
-          switch (cell.getCellType()) {
-            case Cell.CELL_TYPE_STRING:
-			//              System.out.print(cell.getStringCellValue());
-              c.setModel(cell.getStringCellValue());
-              if (c.getModel() != "") {
-            	  c.setColor(cell.getStringCellValue());
-            	  c.setModel(cell.getStringCellValue());
-              }
-              break;
-                case Cell.CELL_TYPE_BOOLEAN:
-     
-//                	System.out.print(cell.getBooleanCellValue());
-                    break;
-                case Cell.CELL_TYPE_NUMERIC:
-//                    System.out.print(cell.getNumericCellValue());
-                	c.setYear(cell.getNumericCellValue());
-                    break;
-            }
-           // System.out.print(" - ");
+            if(counter==1) car.setYear(cell.getStringCellValue());
+            
+            if(counter==2) car.setColor(cell.getStringCellValue());
+            
+            counter++;
+          
         }
-        System.out.println(c);
-        System.out.println();
+       
+        cars.add(car);
     }
-    System.exit(1);
+  
+    System.out.println(cars);
+    
+    
+    
     try {
 		workbook.close();
 	} catch (IOException e) {
@@ -69,6 +69,8 @@ public class ExcelReader
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+    
+    return cars;
 }
 	}
 

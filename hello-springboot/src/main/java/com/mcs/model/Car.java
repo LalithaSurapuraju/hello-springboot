@@ -2,8 +2,18 @@ package com.mcs.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "CAR_DETAILS")
 public class Car implements Serializable{
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    
 
 	
 
@@ -19,7 +29,7 @@ public class Car implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Car(String model, double year, String color) {
+	public Car(String model, String year, String color) {
 		super();
 		this.model = model;
 		this.year = year;
@@ -27,28 +37,33 @@ public class Car implements Serializable{
 	}
 	
 	
-
-	String model;
-	
-	double year;
-	
-	String color;
+    @Id
+    String model;
+    
+    String year;
+    
+    String color;
+    
+    String Sno;
+    
+    String Brandname;
+    
 	
 	
 	
 	public String getModel() {
 		return model;
 	}
-
+	
 	public void setModel(String model) {
 		this.model = model;
 	}
-
-	public double getYear() {
+	
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(double year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
@@ -62,6 +77,9 @@ public class Car implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Car [model=" + model + ", year=" + year + ", color=" + color + "]";
+		return "Car [model=" + model + ", year=" + year + ", color=" + color + ", Sno=" + Sno + ", Brandname="
+				+ Brandname + "]";
 	}
+
+	
 }
